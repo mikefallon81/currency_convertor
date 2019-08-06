@@ -4,7 +4,11 @@
   {  new Vue({
       el: '#app',
       data: {
-        exchangeRates: []
+        exchangeRates: [],
+        selectedRateIndex: 0,
+        amount: 0,
+        completeConversion: 0
+
       },
       mounted() {
         this.getExchangeRates()
@@ -15,6 +19,16 @@
         .then(response => response.json())
         .then(data => this.exchangeRates = data)
       }
+    },
+    computed: {
+
+      selectedExchangeRate(){
+         return this.exchangeRates[this.selectedRateIndex];
+      },
+      convertAmount: function(){
+       this.completeConversion =  this.amount * this.selectedRateIndex
+      }
+
     }
     })
   })

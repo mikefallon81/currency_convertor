@@ -9,14 +9,20 @@
   <body>
     <div id='app'>
 
+  <form  v-on:submit.prevent="convertAmount">
+    <label for="">Enter Amount</label>
+    <input type="text" v-model.number="amount">
 
       <select id="currency-select">
-          <option v-for="(rate, currency) in exchangeRates.rates">
-            {{ currency}} {{rate}}
+          <option v-for="(rate, currency, index) in exchangeRates.rates" v-bind.key="exchangeRates.rates.id">
+            {{ currency}} {{rate}} {{index}}
           </option>
       </select>
+      <input type="submit" value="Convert">
+  </form>
 
-    <!-- {{exchangeRates.rates}} -->
+    <h1> {{completeConversion}}</h1>
+
 
     </div>
   </body>
